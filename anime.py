@@ -11,6 +11,10 @@ class Anime:
     def details(self):
         return f'{self.title} - {self.season_year} - {self.anime_type} - {self.genres}'
     
+    def filter(self, api_source, anime_info):
+        
+        return self.jikanFilter(anime_info)
+    
     # ref 'jikan_api_structure.json' for jikan api top anime
     def jikanFilter(self, anime_info):
         self.title = anime_info['title']

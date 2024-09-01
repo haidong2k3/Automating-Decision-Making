@@ -1,3 +1,8 @@
-class AnimeApiClient chỉ lấy data từ api về, ko cần trích xuất mà giao phần đó cho class Anime
-Giải thích:
-trong tương lai, nếu cung cấp nhiều thông tin của anime hơn, chỉ cần thực hiện thay đổi trong class Anime => không cần đụng tới class AnimeApiClient
+What did i learned from this project?
+- Dung ngon ngu lap trinh python de viet 1 chuong trinh huong toi nguoi dung
+- Ket hop cac nguyen ly OOP trong 1 python program
+- Hoc cach su dung API - Jikan
+- Dung virtual environment
+- Read/Write file
+
+- Ket hop version management system nhu github

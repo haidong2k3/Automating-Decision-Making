@@ -1,20 +1,24 @@
 from anime_list import AnimeList
+from jikan_api_client import JikanApiClient
 
-def getUserMood():
-    yourMood = 'dark'
-    # yourMood = input('Input your mood (excite, dark, suy): ')
-    return yourMood
+# def getUserMood():
+#     yourMood = 'dark'
+#     # yourMood = input('Input your mood (excite, dark, suy): ')
+#     return yourMood
 
 if __name__ == '__main__':
     print('This is a automating decision-making project')
     print('---------------------------------------------------------')
 
-    # declare data
-    animeList = AnimeList()
-    animeList.getApiData()
+    # create api client
+    source = JikanApiClient()
+
+    # get data
+    anime_list = AnimeList()
+    anime_list.getTopAnimeFromApi(source)
 
     # check
-    animeList.printList()
+    anime_list.printList()
 
     # # get user mood
     # userMood = getUserMood()

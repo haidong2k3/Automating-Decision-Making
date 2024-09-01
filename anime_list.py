@@ -1,33 +1,30 @@
 import os
 import random
 from anime import Anime
-from anime_api_client import AnimeApiClient
 
 class AnimeList:
-    def __init__(self, size = 0, animeList = []):
-        self.animeList = animeList
-        self.size = size
+    def __init__(self):
+        self.anime_list = []
+        self.size = 0
 
     def __str__(self):
-        return f'AnimeList: {self.animeList} {self.size}'
+        return f'AnimeList: {self.anime_list} {self.size}'
 
     def printList(self):
-        for i in self.animeList:
+        for i in self.anime_list:
             print(i.details())
 
     def getRandomAnime(self):
-        randomIndex = random.randint(0, self.size - 1)
-        choice = self.animeList[randomIndex]
-        return choice
+        random_index = random.randint(0, self.size - 1)
+        random_anime = self.anime_list[random_index]
+        return random_anime
     
-    def getApiData(self, url = None):
-        # # load data from api
-        source = AnimeApiClient(url) # api-default: https://api.jikan.moe/v4
-        apiDataList = source.getTopAnimeFromJikan()
+    def getTopAnimeFromApi(self, source):
+        api_anime_list = source.getTopAnime()
 
-        for i in apiDataList:
-            tmp = Anime().jikanFilter(i)
-            self.animeList.append(tmp)
+        for i in api_anime_list:
+            tmp = Anime().filter(source, i)
+            self.anime_list.append(tmp)
             self.size += 1
     
     '''
