@@ -9,15 +9,17 @@ class Anime:
         return f'Anime: {self.title} {self.genres} {self.season_year} {self.anime_type}'
     
     def details(self):
-        return f'{self.title} - {self.season_year} - {self.anime_type}'
+        return f'{self.title} - {self.season_year} - {self.anime_type} - {self.genres}'
     
+    # ref 'jikan_api_structure.json' for jikan api top anime
     def jikanFilter(self, anime_info):
         self.title = anime_info['title']
         self.anime_type = anime_info['type']
         self.season_year = f'{anime_info['season']}_{anime_info['year']}'
 
-        genres_list = anime_info['genres']
-        for i in genres_list:
+        genres = []
+        genres = anime_info['genres']
+        for i in genres:
             self.genres.append(i['name'])
         
         return self
