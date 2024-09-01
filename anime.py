@@ -17,7 +17,7 @@ class Anime:
         self.anime_type = anime_info['type']
         self.season_year = f'{anime_info['season']}_{anime_info['year']}'
 
-        genres = []
+        self.genres = []
         genres = anime_info['genres']
         for i in genres:
             self.genres.append(i['name'])
