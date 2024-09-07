@@ -11,10 +11,10 @@ class AnimeList:
         return f'AnimeList: anime_list = {self.anime_list}, size = {self.size}'
 
     def printList(self):
-        print("This is a anime list: ")
-        for i in self.anime_list:
-            print(i.details())
-    
+        print(f"This is an anime list ({self.size}): ")
+        for i in range(0, self.size):
+            print(f"{i}: {self.anime_list[i].details()}")
+
     def getAllGenres(self):
         all_genres = []
         for anime in self.anime_list:
@@ -36,33 +36,46 @@ class AnimeList:
         return random_anime
     
     def getAnimeMatchingAllGenres(self, required_genre_list):
+
+        random_count = 1
+        MAX_RANDOM_COUNT = 500
+
         random_anime = self.getRandomAnime()
         random_anime_genres = random_anime.getGenres()
 
         required_genre_list_sz = len(required_genre_list)
-        i = 0
-        random_count = 0
-        MAX_RANDOM_COUNT = 500
-        
-        while (i < required_genre_list_sz and random_count < MAX_RANDOM_COUNT):
-            if (required_genre_list[i] not in random_anime_genres):
+
+        if (required_genre_list_sz == 0):
+            while (len(random_anime_genres) > 0):
+                if (random_count == MAX_RANDOM_COUNT):
+                    random_count = 0
+                    break
                 random_anime = self.getRandomAnime()
                 random_anime_genres = random_anime.getGenres()
-                i = 0
-            else:
-                i += 1
-            random_count += 1
+                random_count += 1
+        else: 
+            require_genre = 0
+            while (require_genre < required_genre_list_sz):
+                if (required_genre_list[require_genre] not in random_anime_genres):
+                    if (random_count == MAX_RANDOM_COUNT):
+                        random_count = 0
+                        break
+                    random_anime = self.getRandomAnime()
+                    random_anime_genres = random_anime.getGenres()
+                    random_count += 1
+                    require_genre = 0
+                else:
+                    require_genre += 1
 
-        if (random_count == MAX_RANDOM_COUNT):
+        if (random_count == 0):
             print("No Anime Satisfied Genres List. Return any anime: ")
 
         return random_anime
     
-    def getTopAnimeFromApi(self, source):
-        api_anime_list = source.getTopAnime()
+    def getTopAnimeFromApi(self, source, count = 50):
+        api_anime_list = source.getTopAnime(count)
 
         for i in api_anime_list:
-            tmp = Anime().filter(source, i)
-            self.anime_list.append(tmp)
+            self.anime_list.append(Anime().filter(api_source= source, anime_info= i))
             self.size += 1
     

@@ -19,7 +19,10 @@ def getGenreListFromUser(valid_genre_list):
 
     return genre_list
 
-def mainFlow():
+def main():
+    print('This is a automating decision-making project')
+    print('---------------------------------------------------------')
+
     # create api client
     source = JikanApiClient()
 
@@ -37,15 +40,14 @@ def mainFlow():
     print(input_genre_list)
 
     # get random anime
+    print("Getting a random anime: ")
     randomAnime = anime_list.getRandomAnime()
     print(randomAnime.details())
 
     # get random anime matching all genre list
-    randomAnime1 = anime_list.getAnimeMatchingAllGenres(input_genre_list)
-    print(randomAnime1.details())
+    print("Getting a random anime matching all genres in list: ")
+    randomAnime = anime_list.getAnimeMatchingAllGenres(input_genre_list)
+    print(randomAnime.details())
 
 if __name__ == '__main__':
-    print('This is a automating decision-making project')
-    print('---------------------------------------------------------')
-
-    mainFlow()
+    main()
