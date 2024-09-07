@@ -8,7 +8,7 @@ class AnimeList:
         self.size = 0
 
     def __str__(self):
-        return f'AnimeList: {self.anime_list} {self.size}'
+        return f'AnimeList: anime_list = {self.anime_list}, size = {self.size}'
 
     def printList(self):
         print("This is a anime list: ")
@@ -41,14 +41,20 @@ class AnimeList:
 
         required_genre_list_sz = len(required_genre_list)
         i = 0
+        random_count = 0
+        MAX_RANDOM_COUNT = 500
         
-        while (i < required_genre_list_sz):
+        while (i < required_genre_list_sz and random_count < MAX_RANDOM_COUNT):
             if (required_genre_list[i] not in random_anime_genres):
                 random_anime = self.getRandomAnime()
                 random_anime_genres = random_anime.getGenres()
                 i = 0
             else:
                 i += 1
+            random_count += 1
+
+        if (random_count == MAX_RANDOM_COUNT):
+            print("No Anime Satisfied Genres List. Return any anime: ")
 
         return random_anime
     
@@ -60,24 +66,3 @@ class AnimeList:
             self.anime_list.append(tmp)
             self.size += 1
     
-    '''
-    def readFile(self, fileName):
-        # check file existance
-        if not os.path.exists(fileName):
-            print("Can't find file. Pls check again.")
-            return
-    
-        # Open file - read file
-        file = open(fileName, 'r')
-
-        ##Handling data - append to 2d_list
-        line = file.readline()
-        while line: # line != ''
-            arguments = line.strip().split(', ')
-            self.listOfAnime.append(Anime(*arguments))
-            self.size += 1
-            line = file.readline()
-
-        # Close file
-        file.close()
-    '''

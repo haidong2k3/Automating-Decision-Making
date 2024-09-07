@@ -6,12 +6,13 @@ class JikanApiClient:
         self.base_url = f'{url}{version}'
     
     def __str__(self):
-        return f'AnimeApiClient: {self.base_url}'
+        return f'AnimeApiClient: base_url = {self.base_url}'
 
     def getTopAnime(self, page = 1, limit = 25):
         endpoint = f"{self.base_url}/top/anime"
         params = {'page': page, 'limit': limit}
-        response = requests.get(endpoint, params)
+        # response = requests.get(endpoint, params)
+        response = requests.get(endpoint)
 
         # store requested data (response_dict) to file
         response_dict = response.json()

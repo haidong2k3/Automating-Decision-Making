@@ -6,7 +6,7 @@ class Anime:
         self.anime_type = anime_type
     
     def __str__(self):
-        return f'Anime: {self.title} {self.genres} {self.season_year} {self.anime_type}'
+        return f'Anime: title = {self.title}, genres = {self.genres}, season_year = {self.season_year}, anime_type = {self.anime_type}'
     
     def details(self):
         return f'{self.title} - {self.season_year} - {self.anime_type} - {self.genres}'
